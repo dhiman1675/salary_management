@@ -9,6 +9,17 @@ Rails.application.routes.draw do
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
+  # API routes
+  namespace :api do
+    namespace :v1 do
+      resources :employees
+      
+      get 'insights/salary_by_country', to: 'insights#salary_by_country'
+      get 'insights/salary_by_job_title', to: 'insights#salary_by_job_title'
+      get 'insights/overview', to: 'insights#overview'
+    end
+  end
+
   # Defines the root path route ("/")
   # root "posts#index"
 end

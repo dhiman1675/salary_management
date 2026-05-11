@@ -13,7 +13,7 @@ class Employee < ApplicationRecord
 
   def self.salary_stats_by_country(country)
     employees = by_country(country)
-    
+
     if employees.any?
       {
         min_salary: employees.minimum(:salary).to_i,

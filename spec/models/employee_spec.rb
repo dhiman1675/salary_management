@@ -140,13 +140,13 @@ RSpec.describe Employee, type: :model do
     it 'filters by country' do
       usa_employees = Employee.by_country('USA')
       expect(usa_employees.count).to eq(2)
-      expect(usa_employees.pluck(:country).uniq).to eq(['USA'])
+      expect(usa_employees.pluck(:country).uniq).to eq([ 'USA' ])
     end
 
     it 'filters by job_title' do
       engineers = Employee.by_job_title('Software Engineer')
       expect(engineers.count).to eq(2)
-      expect(engineers.pluck(:job_title).uniq).to eq(['Software Engineer'])
+      expect(engineers.pluck(:job_title).uniq).to eq([ 'Software Engineer' ])
     end
   end
 

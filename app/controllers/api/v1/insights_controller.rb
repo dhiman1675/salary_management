@@ -3,7 +3,7 @@ module Api
     class InsightsController < ApplicationController
       def salary_by_country
         unless params[:country].present?
-          return render json: { error: 'Country parameter is required' }, status: :bad_request
+          return render json: { error: "Country parameter is required" }, status: :bad_request
         end
 
         stats = Employee.salary_stats_by_country(params[:country])
@@ -19,7 +19,7 @@ module Api
 
       def salary_by_job_title
         unless params[:job_title].present? && params[:country].present?
-          return render json: { error: 'Job title and country parameters are required' }, status: :bad_request
+          return render json: { error: "Job title and country parameters are required" }, status: :bad_request
         end
 
         avg_salary = Employee.avg_salary_by_job_title_and_country(params[:job_title], params[:country])
@@ -40,14 +40,14 @@ module Api
         avg_salary = Employee.average(:salary).to_i
 
         top_countries = Employee.group(:country)
-                                .select('country, COUNT(*) as employee_count, AVG(salary) as avg_salary')
-                                .order('employee_count DESC')
+                                .select("country, COUNT(*) as employee_count, AVG(salary) as avg_salary")
+                                .order("employee_count DESC")
                                 .limit(5)
                                 .map { |e| { country: e.country, count: e.employee_count, avg_salary: e.avg_salary.to_i } }
 
         top_job_titles = Employee.group(:job_title)
-                                 .select('job_title, COUNT(*) as employee_count, AVG(salary) as avg_salary')
-                                 .order('employee_count DESC')
+                                 .select("job_title, COUNT(*) as employee_count, AVG(salary) as avg_salary")
+                                 .order("employee_count DESC")
                                  .limit(5)
                                  .map { |e| { job_title: e.job_title, count: e.employee_count, avg_salary: e.avg_salary.to_i } }
 

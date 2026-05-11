@@ -14,10 +14,10 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :employees
-      
-      get 'insights/salary_by_country', to: 'insights#salary_by_country'
-      get 'insights/salary_by_job_title', to: 'insights#salary_by_job_title'
-      get 'insights/overview', to: 'insights#overview'
+
+      get "insights/salary_by_country", to: "insights#salary_by_country"
+      get "insights/salary_by_job_title", to: "insights#salary_by_job_title"
+      get "insights/overview", to: "insights#overview"
     end
   end
 

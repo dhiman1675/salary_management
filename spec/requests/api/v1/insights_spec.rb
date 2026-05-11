@@ -49,7 +49,7 @@ RSpec.describe "Api::V1::Insights", type: :request do
       get "/api/v1/insights/salary_by_country", params: { country: 'USA' }
       expect(response).to have_http_status(:ok)
       json = JSON.parse(response.body)
-      
+
       expect(json['country']).to eq('USA')
       expect(json['min_salary']).to eq(80000)
       expect(json['max_salary']).to eq(95000)
@@ -61,7 +61,7 @@ RSpec.describe "Api::V1::Insights", type: :request do
       get "/api/v1/insights/salary_by_country", params: { country: 'Germany' }
       expect(response).to have_http_status(:ok)
       json = JSON.parse(response.body)
-      
+
       expect(json['country']).to eq('Germany')
       expect(json['min_salary']).to eq(0)
       expect(json['max_salary']).to eq(0)
@@ -80,7 +80,7 @@ RSpec.describe "Api::V1::Insights", type: :request do
       get "/api/v1/insights/salary_by_job_title", params: { job_title: 'Software Engineer', country: 'USA' }
       expect(response).to have_http_status(:ok)
       json = JSON.parse(response.body)
-      
+
       expect(json['job_title']).to eq('Software Engineer')
       expect(json['country']).to eq('USA')
       expect(json['avg_salary']).to eq(87500)
@@ -91,7 +91,7 @@ RSpec.describe "Api::V1::Insights", type: :request do
       get "/api/v1/insights/salary_by_job_title", params: { job_title: 'CEO', country: 'Germany' }
       expect(response).to have_http_status(:ok)
       json = JSON.parse(response.body)
-      
+
       expect(json['avg_salary']).to eq(0)
       expect(json['employee_count']).to eq(0)
     end
@@ -107,7 +107,7 @@ RSpec.describe "Api::V1::Insights", type: :request do
       get "/api/v1/insights/overview"
       expect(response).to have_http_status(:ok)
       json = JSON.parse(response.body)
-      
+
       expect(json['total_employees']).to eq(4)
       expect(json['countries_count']).to eq(2)
       expect(json['departments_count']).to eq(2)

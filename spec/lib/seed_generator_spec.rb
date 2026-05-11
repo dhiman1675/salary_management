@@ -40,7 +40,7 @@ RSpec.describe SeedGenerator do
     it 'uses names from first_names.txt and last_names.txt' do
       employees = generator.generate_employees(10)
       employee = employees.first
-      
+
       first_name, last_name = employee[:full_name].split(' ')
       expect(generator.first_names).to include(first_name)
       expect(generator.last_names).to include(last_name)
@@ -50,22 +50,22 @@ RSpec.describe SeedGenerator do
   describe '#seed_database' do
     it 'inserts employees into the database efficiently' do
       Employee.delete_all
-      
+
       start_time = Time.now
       generator.seed_database(1000)
       end_time = Time.now
-      
+
       expect(Employee.count).to eq(1000)
       expect(end_time - start_time).to be < 5
     end
 
     it 'handles large datasets efficiently' do
       Employee.delete_all
-      
+
       start_time = Time.now
       generator.seed_database(10000)
       end_time = Time.now
-      
+
       expect(Employee.count).to eq(10000)
       expect(end_time - start_time).to be < 30
     end

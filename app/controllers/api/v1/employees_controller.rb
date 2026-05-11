@@ -1,7 +1,7 @@
 module Api
   module V1
     class EmployeesController < ApplicationController
-      before_action :set_employee, only: [:show, :update, :destroy]
+      before_action :set_employee, only: [ :show, :update, :destroy ]
 
       def index
         @employees = Employee.all
@@ -57,7 +57,7 @@ module Api
       def set_employee
         @employee = Employee.find(params[:id])
       rescue ActiveRecord::RecordNotFound
-        render json: { error: 'Employee not found' }, status: :not_found
+        render json: { error: "Employee not found" }, status: :not_found
       end
 
       def employee_params
